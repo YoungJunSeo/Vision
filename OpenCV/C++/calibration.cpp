@@ -4,16 +4,17 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "opencv2/contrib/contrib.hpp"
-#include <stdio.h>
+#include <iostream> 
 
 using namespace cv;
 using namespace std;
 
-int main(int argc, char* argv[])
+int main(int argc, char** argv)
 {
-    int numBoards = atoi(argv[1]);
-    int board_w = atoi(argv[2]);
-    int board_h = atoi(argv[3]);
+        
+    int numBoards = 40;
+    int board_w = 640;
+    int board_h = 480;
 
     Size board_sz = Size(board_w, board_h);
     int board_n = board_w*board_h;
@@ -29,7 +30,9 @@ int main(int argc, char* argv[])
     }
 
     Mat img, gray;
-    VideoCapture cap = VideoCapture(1);
+    VideoCapture cap = VideoCapture(0);
+
+    cout << " VideoCapture Open " << endl;
 
     int success = 0;
     int k = 0;
@@ -62,7 +65,7 @@ int main(int argc, char* argv[])
         {
             image_points.push_back(corners);
             object_points.push_back(obj);
-            printf ("Corners stored\n");
+            cout << " Corners stored " << endl;
             success++;
 
             if (success >= numBoards)
@@ -73,7 +76,8 @@ int main(int argc, char* argv[])
 
     }
     destroyAllWindows();
-    printf("Starting calibration\n");
+    cout << " Starting calibration " << endl;//   printf ("Corners stored\n");
+    
     Mat intrinsic = Mat(3, 3, CV_32FC1);
     Mat distcoeffs;
     vector<Mat> rvecs, tvecs;
@@ -87,7 +91,8 @@ int main(int argc, char* argv[])
     fs1 << "CM1" << intrinsic;
     fs1 << "D1" << distcoeffs;
 
-    printf("calibration done\n");
+    cout << " calibration done " << endl;
+
 
     Mat imgU;
     while(1)
@@ -104,6 +109,9 @@ int main(int argc, char* argv[])
             break;
         }
     }
+
+    
     cap.release();
+    
     return(0);
 }
