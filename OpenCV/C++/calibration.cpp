@@ -53,20 +53,25 @@ int main(int argc, char** argv)
         imshow("corners", gray);
 
         k = waitKey(1);
+
+        cout << " k = "  << k << endl;        
         if (found)
         {
             k = waitKey(0);
         }
-        if (k == 27)
+        if (k == 27)    // if press ESC program will stop
         {
             break;
         }
-        if (k == ' ' && found !=0)
+        if (k == ' ' && found !=0)  //// if press space bar program got success
         {
             image_points.push_back(corners);
             object_points.push_back(obj);
             cout << " Corners stored " << endl;
             success++;
+
+            cout << " success = "  << success << endl;        
+            cout << " numBoards = "  << numBoards << endl;        
 
             if (success >= numBoards)
             {
@@ -104,10 +109,10 @@ int main(int argc, char** argv)
         imshow("undistort", imgU);
 
         k = waitKey(5);
-        if (k == 27)
+        if (k == 27)   // if press ESC program will stop.
         {
             break;
-        }
+        } 
     }
 
     
