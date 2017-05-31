@@ -3,16 +3,16 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "opencv2/contrib/contrib.hpp"
-#include <stdio.h>
+#include <iostream> 
 
 using namespace cv;
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-    int numBoards = atoi(argv[1]);
-    int board_w = atoi(argv[2]);
-    int board_h = atoi(argv[3]);
+    int numBoards = 81;
+    int board_w = 8;
+    int board_h = 6;
 
     Size board_sz = Size(board_w, board_h);
     int board_n = board_w*board_h;
