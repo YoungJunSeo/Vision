@@ -12,9 +12,9 @@ using namespace std;
 int main(int argc, char** argv)
 {
         
-    int numBoards = 40;
-    int board_w = 640;
-    int board_h = 480;
+    int numBoards = 0;
+    int board_w = 8;
+    int board_h = 6;
 
     Size board_sz = Size(board_w, board_h);
     int board_n = board_w*board_h;
