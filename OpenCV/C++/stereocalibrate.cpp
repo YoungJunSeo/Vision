@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
             imagePoints1.push_back(corners1);
             imagePoints2.push_back(corners2);
             object_points.push_back(obj);
-            printf ("Corners stored\n");
+            cout << "Corners stored " << endl;
             success++;
 
             if (success >= numBoards)
@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
     }
 
     destroyAllWindows();
-    printf("Starting Calibration\n");
+    cout << "Starting Calibration " << endl;
     Mat CM1 = Mat(3, 3, CV_64FC1);
     Mat CM2 = Mat(3, 3, CV_64FC1);
     Mat D1, D2;
@@ -107,9 +107,9 @@ int main(int argc, char* argv[])
     fs1 << "E" << E;
     fs1 << "F" << F;
 
-    printf("Done Calibration\n");
+    cout << "Done Calibration " << endl;
 
-    printf("Starting Rectification\n");
+    cout << "Starting Rectification" << endl;
 
     Mat R1, R2, P1, P2, Q;
     stereoRectify(CM1, D1, CM2, D2, img1.size(), R, T, R1, R2, P1, P2, Q);
@@ -119,9 +119,9 @@ int main(int argc, char* argv[])
     fs1 << "P2" << P2;
     fs1 << "Q" << Q;
 
-    printf("Done Rectification\n");
+    cout << "Done Rectification" << endl;
 
-    printf("Applying Undistort\n");
+    cout << "Applying Undistort" << endl;
 
     Mat map1x, map1y, map2x, map2y;
     Mat imgU1, imgU2;
@@ -129,7 +129,7 @@ int main(int argc, char* argv[])
     initUndistortRectifyMap(CM1, D1, R1, P1, img1.size(), CV_32FC1, map1x, map1y);
     initUndistortRectifyMap(CM2, D2, R2, P2, img2.size(), CV_32FC1, map2x, map2y);
 
-    printf("Undistort complete\n");
+    cout << "Undistort complete" << endl;
 
     while(1)
     {    
