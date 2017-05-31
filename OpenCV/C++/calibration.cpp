@@ -12,7 +12,7 @@ using namespace std;
 int main(int argc, char** argv)
 {
         
-    int numBoards = 0;
+    int numBoards = 41;
     int board_w = 8;
     int board_h = 6;
 
